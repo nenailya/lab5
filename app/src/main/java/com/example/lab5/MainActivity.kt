@@ -32,10 +32,5 @@ class MainActivity : AppCompatActivity() {
         Log.d("onCreate", "onCreate")
     }
 
-    override fun onStop() {
-        Thread.currentThread().interrupt()
-        super.onStop()
-    }
-
 }
 
