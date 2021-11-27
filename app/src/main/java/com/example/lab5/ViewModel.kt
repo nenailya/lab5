@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import java.net.URL
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import java.util.concurrent.Future
 
 class ViewModel : ViewModel() {
     var bitmap: MutableLiveData<Bitmap> = MutableLiveData()
@@ -24,7 +23,6 @@ class ViewModel : ViewModel() {
     }
 
     override fun onCleared() {
-        Log.d("myExecutor", "shtdwn")
         executor.shutdown()
         super.onCleared()
     }

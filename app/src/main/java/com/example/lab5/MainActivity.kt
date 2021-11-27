@@ -3,7 +3,6 @@ package com.example.lab5
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lab5.databinding.ActivityMainBinding
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 
@@ -25,13 +24,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.bitmap.observe(this) {
             imageView.setImageBitmap(it)
         }
-        Log.d("onCreate", "onCreate")
     }
 
     override fun onStop() {
         Thread.currentThread().interrupt()
         super.onStop()
     }
-
 }
 
