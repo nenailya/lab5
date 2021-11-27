@@ -1,17 +1,11 @@
 package com.example.lab5
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lab5.databinding.ActivityMainBinding
-import java.net.URL
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import android.graphics.BitmapFactory
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
-import androidx.lifecycle.MutableLiveData
+
 class MainActivity : AppCompatActivity() {
     private val viewModel = ViewModel()
 
@@ -29,8 +23,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.bitmap.observe(this) {
             imageView.setImageBitmap(it)
         }
-        Log.d("onCreate", "onCreate")
     }
-
 }
 
