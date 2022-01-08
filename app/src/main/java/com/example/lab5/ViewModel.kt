@@ -8,16 +8,27 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.net.URL
 
 class ViewModel : ViewModel() {
-    var bitmap: MutableLiveData<Bitmap> = MutableLiveData()
+    var bitmap: MutableLiveData<Bitmap?> = MutableLiveData()
     private val url = URL("https://thiscatdoesnotexist.com/")
 
+    //fun download() {
+    //    viewModelScope.launch(Dispatchers.IO) {
+    //        delay(1000)
+    //        bitmap.postValue(BitmapFactory.decodeStream(url.openConnection().getInputStream()))
+    //    }
+    //}
+
     fun download() {
-        viewModelScope.launch(Dispatchers.IO) {
-            delay(1000)
-            bitmap.postValue(BitmapFactory.decodeStream(url.openConnection().getInputStream()))
+        viewModelScope.launch {
+            bitmap.value =
+                withContext(Dispatchers.IO) {
+                delay(1000)
+                BitmapFactory.decodeStream(url.openStream())
+            }
         }
     }
 }
