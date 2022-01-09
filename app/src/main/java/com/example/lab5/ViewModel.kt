@@ -7,12 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.net.URL
 import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class ViewModel : ViewModel() {
     var bitmap: MutableLiveData<Bitmap> = MutableLiveData()
     private val url = URL("https://thiscatdoesnotexist.com/")
-    private val executor: ExecutorService = Executors.newSingleThreadExecutor()
+    private val executor: ExecutorService = App.executor
 
     fun download() {
         executor.submit {
@@ -20,10 +19,5 @@ class ViewModel : ViewModel() {
             Log.d("myT", "${Thread.currentThread()}")
             bitmap.postValue(BitmapFactory.decodeStream(url.openConnection().getInputStream()))
         }
-    }
-
-    override fun onCleared() {
-        executor.shutdown()
-        super.onCleared()
     }
 }
